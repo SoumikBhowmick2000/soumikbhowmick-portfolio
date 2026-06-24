@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soumik Bhowmick — Remote Project Manager & Operations Specialist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================
+       CSS CUSTOM PROPERTIES — Edit here to retheme everything
+       ========================================================= */
+    :root {
+      /* Palette */
+      --color-bg:           #0F1117;
+      --color-surface:      #181C26;
+      --color-surface-alt:  #1E2332;
+      --color-border:       #272D3F;
+      --color-accent:       #00C2A8;
+      --color-accent-dim:   rgba(0, 194, 168, 0.12);
+      --color-accent-glow:  rgba(0, 194, 168, 0.25);
+      --color-text-primary: #F0EDE8;
+      --color-text-secondary: #8A8F9E;
+      --color-text-muted:   #555C72;
+      --color-chip-bg:      #232941;
+      --color-chip-text:    #A0A8C0;
+      --color-green:        #34D399;
+      --color-amber:        #FBBF24;
+      --color-rose:         #FB7185;
+      --color-sky:          #38BDF8;
+      --color-violet:       #A78BFA;
+
+      /* Typography */
+      --font-main:          'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono:          'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+      /* Type scale */
+      --text-xs:   0.70rem;
+      --text-sm:   0.825rem;
+      --text-base: 1rem;
+      --text-lg:   1.125rem;
+      --text-xl:   1.375rem;
+      --text-2xl:  1.75rem;
+      --text-3xl:  2.25rem;
+      --text-4xl:  3rem;
+      --text-5xl:  3.75rem;
+
+      /* Spacing */
+      --space-1:  0.25rem;
+      --space-2:  0.5rem;
+      --space-3:  0.75rem;
+      --space-4:  1rem;
+      --space-5:  1.25rem;
+      --space-6:  1.5rem;
+      --space-8:  2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --space-24: 6rem;
+
+      /* Layout */
+      --max-width: 1280px;
+      --card-radius: 14px;
+      --chip-radius: 6px;
+
+      /* Transitions */
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* =========================================================
+       RESET & BASE
+       ========================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--color-bg);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: opacity var(--transition-fast);
+    }
+    a:hover { opacity: 0.75; text-decoration: underline; }
+
+    img { max-width: 100%; display: block; }
+
+    /* =========================================================
+       LAYOUT HELPERS
+       ========================================================= */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: var(--space-6);
+    }
+
+    @media (max-width: 640px) {
+      .container { padding-inline: var(--space-4); }
+    }
+
+    /* =========================================================
+       CHIPS / BADGES
+       ========================================================= */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: 3px 10px;
+      border-radius: var(--chip-radius);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      background: var(--color-chip-bg);
+      color: var(--color-chip-text);
+      border: 1px solid var(--color-border);
+    }
+    .chip.accent    { background: var(--color-accent-dim); color: var(--color-accent); border-color: rgba(0,194,168,0.3); }
+    .chip.green     { background: rgba(52,211,153,0.1); color: var(--color-green); border-color: rgba(52,211,153,0.3); }
+    .chip.amber     { background: rgba(251,191,36,0.1); color: var(--color-amber); border-color: rgba(251,191,36,0.3); }
+    .chip.sky       { background: rgba(56,189,248,0.1); color: var(--color-sky); border-color: rgba(56,189,248,0.3); }
+    .chip.rose      { background: rgba(251,113,133,0.1); color: var(--color-rose); border-color: rgba(251,113,133,0.3); }
+    .chip.violet    { background: rgba(167,139,250,0.1); color: var(--color-violet); border-color: rgba(167,139,250,0.3); }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
+    }
+
+    /* =========================================================
+       SITE HEADER
+       ========================================================= */
+    .site-header {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--color-border);
+      padding-top: var(--space-20);
+      padding-bottom: var(--space-16);
+    }
+
+    /* Subtle grid background */
+    .site-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,194,168,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,194,168,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    /* Radial glow behind headline */
+    .site-header::after {
+      content: '';
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(0,194,168,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .header-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--color-accent);
+      margin-bottom: var(--space-5);
+      letter-spacing: 0.05em;
+    }
+
+    .header-eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--color-accent);
+    }
+
+    .header-name {
+      font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-4);
+    }
+
+    .header-name span {
+      color: var(--color-accent);
+    }
+
+    .header-role {
+      font-size: var(--text-lg);
+      color: var(--color-text-secondary);
+      font-weight: 400;
+      max-width: 600px;
+      margin-bottom: var(--space-8);
+      line-height: 1.5;
+    }
+
+    .availability-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      background: rgba(52,211,153,0.08);
+      border: 1px solid rgba(52,211,153,0.3);
+      border-radius: 100px;
+      font-size: var(--text-sm);
+      color: var(--color-green);
+      font-weight: 500;
+      margin-bottom: var(--space-8);
+    }
+
+    .availability-badge::before {
+      content: '';
+      display: block;
+      width: 7px;
+      height: 7px;
+      background: var(--color-green);
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    .header-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      align-items: center;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border);
+      padding: var(--space-2) var(--space-4);
+      border-radius: 8px;
+      transition: border-color var(--transition-base), color var(--transition-base), background var(--transition-base);
+    }
+
+    .contact-link:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+      background: var(--color-accent-dim);
+      text-decoration: none;
+      opacity: 1;
+    }
+
+    .contact-link svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* =========================================================
+       NAV BAR
+       ========================================================= */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 17, 23, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--color-border);
+      padding-block: var(--space-3);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: var(--text-base);
+      color: var(--color-text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span { color: var(--color-accent); }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-6);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      font-weight: 500;
+      transition: color var(--transition-fast);
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--color-accent);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transition: transform var(--transition-base);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--color-text-primary);
+      text-decoration: none;
+      opacity: 1;
+    }
+
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Mobile hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: var(--space-2);
+      background: none;
+      border: none;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--color-text-secondary);
+      border-radius: 2px;
+      transition: all var(--transition-base);
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(15,17,23,0.97);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-8);
+        z-index: 200;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links a { font-size: var(--text-xl); }
+
+      .nav-hamburger { display: flex; z-index: 300; position: relative; }
+
+      .nav-close {
+        position: fixed;
+        top: var(--space-4);
+        right: var(--space-4);
+        z-index: 301;
+        display: none;
+        background: none;
+        border: none;
+        color: var(--color-text-secondary);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: var(--space-2);
+      }
+
+      .nav-links.open ~ .nav-close,
+      .nav-close.visible { display: block; }
+    }
+
+    /* =========================================================
+       SECTION HEADERS
+       ========================================================= */
+    .section {
+      padding-block: var(--space-16) var(--space-20);
+      scroll-margin-top: 62px; /* height of sticky nav */
+    }
+
+    .section-header {
+      margin-bottom: var(--space-10);
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-3);
+    }
+
+    .section-title {
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--color-text-primary);
+    }
+
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      margin-block: var(--space-16);
+    }
+
+    /* =========================================================
+       PORTFOLIO GRID
+       ========================================================= */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+    }
+
+    @media (max-width: 1024px) {
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+    }
+
+    /* =========================================================
+       EXPERIENCE CARD
+       ========================================================= */
+    .exp-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition:
+        transform var(--transition-base),
+        box-shadow var(--transition-base),
+        border-color var(--transition-base);
+      position: relative;
+    }
+
+    .exp-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 0 1px var(--color-accent);
+      border-color: var(--color-accent);
+    }
+
+    /* Thin accent top bar */
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-accent), transparent);
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+    .exp-card:hover::before { opacity: 1; }
+
+    .card-body {
+      padding: var(--space-5) var(--space-5) var(--space-4);
+      flex: 1;
+    }
+
+    .card-company {
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-2);
+    }
+
+    .card-role {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-4);
+      line-height: 1.3;
+    }
+
+    .card-summary {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+      margin-bottom: var(--space-5);
+    }
+
+    /* =========================================================
+       EXPANDABLE DETAILS PANEL
+       ========================================================= */
+    .card-details {
+      border-top: 1px solid var(--color-border);
+    }
+
+    .card-details summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-4) var(--space-5);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-accent);
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      transition: background var(--transition-fast);
+    }
+
+    .card-details summary::-webkit-details-marker { display: none; }
+    .card-details summary::marker { display: none; }
+
+    .card-details summary:hover {
+      background: var(--color-accent-dim);
+    }
+
+    .details-chevron {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      transition: transform var(--transition-base);
+      flex-shrink: 0;
+    }
+
+    .card-details[open] .details-chevron {
+      transform: rotate(180deg);
+    }
+
+    .details-body {
+      padding: var(--space-5);
+      padding-top: 0;
+      background: var(--color-surface-alt);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .details-section {
+      margin-bottom: var(--space-5);
+    }
+
+    .details-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-3);
+      margin-top: var(--space-5);
+    }
+
+    .details-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .details-bullets li {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      padding-left: var(--space-4);
+      position: relative;
+    }
+
+    .details-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-size: 0.75em;
+      top: 2px;
+    }
+
+    .metric-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      background: rgba(0,194,168,0.08);
+      border: 1px solid rgba(0,194,168,0.2);
+      border-radius: 8px;
+      font-size: var(--text-sm);
+      color: var(--color-accent);
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+
+    .metric-pill span {
+      font-weight: 400;
+      color: var(--color-text-secondary);
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: var(--space-3);
+      margin-top: var(--space-3);
+    }
+
+    .artifact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: var(--space-3);
+    }
+
+    .artifact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: var(--space-1) var(--space-3);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-secondary);
+      transition: border-color var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .artifact-link:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+      background: var(--color-accent-dim);
+      text-decoration: none;
+      opacity: 1;
+    }
+
+    /* =========================================================
+       EDUCATION — degree + school labels (used in deep cards)
+       ========================================================= */
+    .edu-degree {
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-1);
+      letter-spacing: -0.02em;
+    }
+
+    .edu-school {
+      font-size: var(--text-sm);
+      color: var(--color-accent);
+      font-weight: 600;
+      margin-top: var(--space-1);
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    .site-footer {
+      border-top: 1px solid var(--color-border);
+      padding-block: var(--space-10);
+      text-align: center;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .footer-text {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    .footer-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      justify-content: center;
+    }
+
+    /* =========================================================
+       SECTION SUBTITLE
+       ========================================================= */
+    .section-subtitle {
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      max-width: 620px;
+      margin-top: var(--space-3);
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       SKILL CLUSTERS
+       ========================================================= */
+    .skill-cluster {
+      margin-bottom: var(--space-8);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+    }
+
+    .skill-cluster-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-5) var(--space-6);
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-surface-alt);
+    }
+
+    .skill-cluster-icon {
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    .skill-cluster-title {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .skill-rows {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .skill-row {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: var(--space-6);
+      padding: var(--space-5) var(--space-6);
+      border-bottom: 1px solid var(--color-border);
+      transition: background var(--transition-fast);
+    }
+
+    .skill-row:last-child {
+      border-bottom: none;
+    }
+
+    .skill-row:hover {
+      background: rgba(0, 194, 168, 0.03);
+    }
+
+    @media (max-width: 768px) {
+      .skill-row {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+      }
+    }
+
+    .skill-row-left {
+      padding-top: var(--space-1);
+    }
+
+    .skill-name {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      line-height: 1.4;
+      margin-bottom: var(--space-2);
+    }
+
+    .skill-origin {
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    .skill-origin strong {
+      color: var(--color-accent);
+      font-weight: 600;
+    }
+
+    .skill-evidence {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    /* =========================================================
+       EDUCATION DEEP CARDS
+       ========================================================= */
+    .edu-deep-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+    }
+
+    .edu-deep-header {
+      padding: var(--space-6);
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-surface-alt);
+    }
+
+    .edu-narrative {
+      padding: var(--space-6);
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .edu-modules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    @media (max-width: 900px) {
+      .edu-modules-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 540px) {
+      .edu-modules-grid { grid-template-columns: 1fr; }
+    }
+
+    .edu-module-item {
+      padding: var(--space-5) var(--space-6);
+      border-right: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      transition: background var(--transition-fast);
+    }
+
+    .edu-module-item:hover {
+      background: var(--color-accent-dim);
+    }
+
+    /* Remove right border on last in each row */
+    .edu-modules-grid .edu-module-item:nth-child(3n) { border-right: none; }
+    @media (max-width: 900px) {
+      .edu-modules-grid .edu-module-item:nth-child(3n) { border-right: 1px solid var(--color-border); }
+      .edu-modules-grid .edu-module-item:nth-child(2n) { border-right: none; }
+    }
+    @media (max-width: 540px) {
+      .edu-modules-grid .edu-module-item { border-right: none; }
+    }
+
+    .edu-module-name {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--color-accent);
+      margin-bottom: var(--space-2);
+    }
+
+    .edu-module-use {
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+
+    .edu-live-projects {
+      padding: var(--space-5) var(--space-6);
+    }
+
+    /* =========================================================
+       CONTACT SECTION
+       ========================================================= */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    .contact-blurb {
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+    }
+
+    .contact-details-list {
+      margin-top: var(--space-8);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--color-border);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+    }
+
+    .contact-detail-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: var(--space-4);
+      align-items: center;
+      padding: var(--space-4) var(--space-5);
+      border-bottom: 1px solid var(--color-border);
+      transition: background var(--transition-fast);
+    }
+
+    .contact-detail-row:last-child { border-bottom: none; }
+    .contact-detail-row:hover { background: var(--color-surface-alt); }
+
+    .contact-detail-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .contact-detail-value {
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      font-weight: 500;
+      word-break: break-all;
+    }
+
+    a.contact-detail-value {
+      color: var(--color-accent);
+    }
+
+    .contact-role-cards {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .contact-roles-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-1);
+    }
+
+    .contact-role-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: var(--space-4) var(--space-5);
+      transition: border-color var(--transition-base), background var(--transition-base);
+    }
+
+    .contact-role-card:hover {
+      border-color: var(--color-accent);
+      background: var(--color-accent-dim);
+    }
+
+    .contact-role-title {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-1);
+    }
+
+    .contact-role-desc {
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       SCROLL ANIMATION
+       ========================================================= */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in { opacity: 1; transform: none; transition: none; }
+      .exp-card { transition: none; }
+      .availability-badge::before { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       STICKY NAV
+       ============================================================ -->
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <div class="nav-logo">SB<span>.</span></div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#experience" data-section="experience">Experience</a></li>
+        <li><a href="#skills" data-section="skills">Skills</a></li>
+        <li><a href="#education" data-section="education">Education</a></li>
+        <li><a href="#contact" data-section="contact">Contact</a></li>
+      </ul>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <button class="nav-close" id="navClose" aria-label="Close menu">✕</button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="header-eyebrow">Project Manager · Operations &amp; Growth Strategist</div>
+      <h1 class="header-name">Soumik <span>Bhowmick</span></h1>
+      <p class="header-role">
+        Cross-functional Project Manager with 3+ years of remote &amp; international delivery experience — managing digital workflows, client pipelines, and operational systems across Europe, India, and globally.
+      </p>
+      <div class="availability-badge">
+        Open to Work — Worldwide · Europe &amp; India Priority
+      </div>
+      <div class="header-contact">
+        <a href="tel:+919383006601" class="contact-link">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          +91 93830 06601 (IN)
+        </a>
+        <a href="tel:+4915111209693" class="contact-link">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          +49 151 11209693 (DE)
+        </a>
+        <a href="mailto:soumikbhowmick01@gmail.com" class="contact-link">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          soumikbhowmick01@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/soumik-bhowmick-8ab631272" target="_blank" rel="noopener" class="contact-link">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener" class="contact-link">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       EXPERIENCE SECTION
+       ============================================================ -->
+  <main>
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">// Professional Record</p>
+          <h2 class="section-title">Experience &amp; Projects</h2>
+        </div>
+
+        <div class="portfolio-grid">
+
+          <!-- ── CARD 1: Image Studio ─────────────────────────── -->
+          <article class="exp-card fade-in">
+            <div class="card-body">
+              <p class="card-company">Image Studio</p>
+              <h3 class="card-role">Operations &amp; Marketing Consultant</h3>
+              <div class="chip-row">
+                <span class="chip accent">📅 Apr 2023 – Feb 2026</span>
+                <span class="chip green">✦ 3 Years</span>
+                <span class="chip">Remote / Hybrid</span>
+                <span class="chip sky">Kohima, India</span>
+              </div>
+              <div class="chip-row">
+                <span class="chip">Figma</span>
+                <span class="chip">Google Workspace</span>
+                <span class="chip">Process Design</span>
+                <span class="chip">Digital Transformation</span>
+              </div>
+              <p class="card-summary">
+                Led full operational and digital transformation of a traditional photography studio — designing booking systems, managing asset pipelines, and building workflow documentation from scratch over a sustained three-year engagement.
+              </p>
+            </div>
+            <details class="card-details">
+              <summary>
+                Deep Dive
+                <svg class="details-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="details-body">
+                <p class="details-label">Key Deliverables</p>
+                <ul class="details-bullets">
+                  <li>Engineered the full operational blueprint to transition the studio from a manual, paper-based workflow to a digital-first model — expanding regional market reach and capacity.</li>
+                  <li>Audited legacy scheduling systems and implemented a structured digital booking model, eliminating double-bookings and improving delivery turnaround.</li>
+                  <li>Maintained unified digital spreadsheets tracking large volumes of media assets, processing schedules, and project deliverables across high-volume seasonal peak windows.</li>
+                  <li>Created structured visual mockups and interactive workflow documentation in Figma to map bottlenecks and guide software integration decisions for stakeholders.</li>
+                </ul>
+
+                <p class="details-label">Impact Metrics</p>
+                <div class="metrics-grid">
+                  <div class="metric-pill">30% <span>delivery turnaround improvement</span></div>
+                  <div class="metric-pill">3 yrs <span>sustained remote engagement</span></div>
+                  <div class="metric-pill">100% <span>digitized booking workflow</span></div>
+                </div>
+
+                <p class="details-label">Project Type</p>
+                <div class="chip-row">
+                  <span class="chip accent">Digital Transformation</span>
+                  <span class="chip violet">Operations Design</span>
+                  <span class="chip amber">Process Optimization</span>
+                </div>
+
+                <p class="details-label">Artifacts &amp; Outputs</p>
+                <div class="artifact-links">
+                  <a href="#" class="artifact-link">📐 Figma Workflow Diagrams</a>
+                  <a href="#" class="artifact-link">📊 Asset Tracking Spreadsheet</a>
+                  <a href="#" class="artifact-link">📋 Booking SOP Documentation</a>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <!-- ── CARD 2: Hollister / A&F ──────────────────────── -->
+          <article class="exp-card fade-in">
+            <div class="card-body">
+              <p class="card-company">Hollister Co. (Abercrombie &amp; Fitch)</p>
+              <h3 class="card-role">Brand Representative &amp; Operations Associate</h3>
+              <div class="chip-row">
+                <span class="chip accent">📅 2024 – 2025</span>
+                <span class="chip green">✦ On-site EU</span>
+                <span class="chip sky">Cologne, Germany</span>
+              </div>
+              <div class="chip-row">
+                <span class="chip">Inventory Management</span>
+                <span class="chip">Brand Standards</span>
+                <span class="chip">Multilingual Ops</span>
+              </div>
+              <p class="card-summary">
+                Operated within a high-volume international retail environment in Germany, managing stock accuracy, inventory compliance, and cross-team coordination in a multilingual workplace — directly interfacing with corporate brand standards.
+              </p>
+            </div>
+            <details class="card-details">
+              <summary>
+                Deep Dive
+                <svg class="details-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="details-body">
+                <p class="details-label">Key Deliverables</p>
+                <ul class="details-bullets">
+                  <li>Managed end-to-end stock accuracy, inventory processing, and floor layout compliance within a fast-paced, high-footfall international retail flagship.</li>
+                  <li>Coordinated communication across multilingual German-English store floor teams to ensure consistent adherence to Abercrombie &amp; Fitch corporate brand standards and daily operational KPIs.</li>
+                  <li>Supported German retail market immersion — reinforcing cultural adaptability and professional German-language communication in a live European business environment.</li>
+                </ul>
+
+                <p class="details-label">Context &amp; Relevance</p>
+                <div class="chip-row">
+                  <span class="chip amber">EU Market Immersion</span>
+                  <span class="chip violet">German Language Context</span>
+                  <span class="chip sky">Premium Brand Standards</span>
+                </div>
+
+                <p class="details-label">Project Type</p>
+                <div class="chip-row">
+                  <span class="chip accent">Retail Operations</span>
+                  <span class="chip">Inventory &amp; Compliance</span>
+                </div>
+
+                <p class="details-label">Artifacts &amp; Outputs</p>
+                <div class="artifact-links">
+                  <a href="#" class="artifact-link">📦 Inventory Process Notes</a>
+                  <a href="#" class="artifact-link">🏪 A&amp;F Brand Standards Ref</a>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <!-- ── CARD 3: TEDxCBS ──────────────────────────────── -->
+          <article class="exp-card fade-in">
+            <div class="card-body">
+              <p class="card-company">TEDxCBS — Executive Committee</p>
+              <h3 class="card-role">Project Management Lead</h3>
+              <div class="chip-row">
+                <span class="chip accent">📅 Mar 2025 – Jun 2025</span>
+                <span class="chip rose">✦ Event Management</span>
+                <span class="chip sky">Cologne, Germany</span>
+              </div>
+              <div class="chip-row">
+                <span class="chip">Trello</span>
+                <span class="chip">Slack</span>
+                <span class="chip">Stakeholder Reporting</span>
+                <span class="chip">Cross-Functional PM</span>
+              </div>
+              <p class="card-summary">
+                Coordinated deliverables and operational rhythm across 5+ departments for a high-profile international event. Owned tracking dashboards, weekly status reports, and served as the central PM layer between functional leads and senior stakeholders.
+              </p>
+            </div>
+            <details class="card-details">
+              <summary>
+                Deep Dive
+                <svg class="details-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="details-body">
+                <p class="details-label">Key Deliverables</p>
+                <ul class="details-bullets">
+                  <li>Led cross-functional project coordination across 5+ departments (logistics, content, speakers, marketing, tech) for the TEDxCBS flagship event in Cologne.</li>
+                  <li>Built and maintained live tracking dashboards monitoring deliverable lifecycle status for each functional team — catching project slippage before escalation.</li>
+                  <li>Authored concise weekly update reports for senior stakeholders outlining priority vectors, blockers, and operational bottleneck resolutions.</li>
+                  <li>Served as the communication and accountability layer between execution teams and the Executive Committee, translating operational complexity into clear status language.</li>
+                </ul>
+
+                <p class="details-label">Scope &amp; Scale</p>
+                <div class="metrics-grid">
+                  <div class="metric-pill">5+ <span>departments coordinated</span></div>
+                  <div class="metric-pill">4 months <span>delivery cycle</span></div>
+                  <div class="metric-pill">Weekly <span>exec stakeholder reports</span></div>
+                </div>
+
+                <p class="details-label">Project Type</p>
+                <div class="chip-row">
+                  <span class="chip accent">Cross-Functional PM</span>
+                  <span class="chip rose">Event Operations</span>
+                  <span class="chip">Stakeholder Reporting</span>
+                </div>
+
+                <p class="details-label">Artifacts &amp; Outputs</p>
+                <div class="artifact-links">
+                  <a href="#" class="artifact-link">📋 Project Tracking Dashboard</a>
+                  <a href="#" class="artifact-link">📝 Weekly Status Reports</a>
+                  <a href="#" class="artifact-link">🗂 Deliverable Lifecycle Map</a>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <!-- ── CARD 4: Einhundert CleanTech ─────────────────── -->
+          <article class="exp-card fade-in">
+            <div class="card-body">
+              <p class="card-company">Einhundert CleanTech — via CBS Venture Lab</p>
+              <h3 class="card-role">Process &amp; Growth Strategy Analyst</h3>
+              <div class="chip-row">
+                <span class="chip accent">📅 Sep 2025 – Dec 2025</span>
+                <span class="chip green">✦ Venture Project</span>
+                <span class="chip sky">Cologne, Germany</span>
+              </div>
+              <div class="chip-row">
+                <span class="chip">Funnel Optimization</span>
+                <span class="chip">Go-To-Market</span>
+                <span class="chip">Campaign Tracking</span>
+                <span class="chip">B2C Strategy</span>
+              </div>
+              <p class="card-summary">
+                Embedded with a CleanTech startup through CBS Venture Lab to co-design a B2C customer acquisition playbook. Delivered a complete digital marketing funnel, operational workflow improvements, and conversion tracking infrastructure.
+              </p>
+            </div>
+            <details class="card-details">
+              <summary>
+                Deep Dive
+                <svg class="details-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="details-body">
+                <p class="details-label">Key Deliverables</p>
+                <ul class="details-bullets">
+                  <li>Co-engineered a structured institutional B2C customer acquisition playbook — mapping the full funnel from awareness through conversion, with defined channel priorities and messaging frameworks.</li>
+                  <li>Built and monitored campaign timelines and conversion metric tracking systems to evaluate funnel performance and identify drop-off stages requiring optimization.</li>
+                  <li>Restructured internal team documentation and workflow frameworks to reduce process friction, increase delivery bandwidth, and align team outputs to company OKRs.</li>
+                  <li>Operated in a startup-paced, cross-disciplinary environment requiring rapid iteration between strategy, execution, and documentation phases.</li>
+                </ul>
+
+                <p class="details-label">Growth &amp; GTM Focus</p>
+                <div class="chip-row">
+                  <span class="chip accent">B2C Funnel Design</span>
+                  <span class="chip green">CleanTech Sector</span>
+                  <span class="chip violet">Campaign Ops</span>
+                  <span class="chip amber">Conversion Tracking</span>
+                </div>
+
+                <p class="details-label">Artifacts &amp; Outputs</p>
+                <div class="artifact-links">
+                  <a href="#" class="artifact-link">📈 Customer Acquisition Playbook</a>
+                  <a href="#" class="artifact-link">🔄 Funnel Architecture Diagram</a>
+                  <a href="#" class="artifact-link">📊 Campaign Timeline Tracker</a>
+                  <a href="#" class="artifact-link">📋 Workflow Documentation</a>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <!-- ── CARD 5: Bosch Case Competition ───────────────── -->
+          <article class="exp-card fade-in">
+            <div class="card-body">
+              <p class="card-company">Bosch Corporate Case Competition — via CBS</p>
+              <h3 class="card-role">Operations &amp; GTM Strategist</h3>
+              <div class="chip-row">
+                <span class="chip accent">📅 Oct 2024 – Dec 2024</span>
+                <span class="chip amber">✦ Corporate Mandate</span>
+                <span class="chip sky">Cologne, Germany</span>
+              </div>
+              <div class="chip-row">
+                <span class="chip">GTM Architecture</span>
+                <span class="chip">Executive Decks</span>
+                <span class="chip">Resource Allocation</span>
+                <span class="chip">Board Presentation</span>
+              </div>
+              <p class="card-summary">
+                Developed an end-to-end Go-To-Market logistics architecture for a Bosch corporate mandate — modelling complex resource allocation, aligning strategic execution frameworks, and presenting findings at board level via structured executive pitch decks.
+              </p>
+            </div>
+            <details class="card-details">
+              <summary>
+                Deep Dive
+                <svg class="details-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="details-body">
+                <p class="details-label">Key Deliverables</p>
+                <ul class="details-bullets">
+                  <li>Designed a complete end-to-end Go-To-Market logistics architecture for a live Bosch corporate challenge, aligning complex resource allocation models with strategic market-entry objectives.</li>
+                  <li>Compiled and structured executive-level pitch decks translating dense operational and financial data into clear, board-ready visual narratives.</li>
+                  <li>Collaborated within a tightly scoped 8-week mandate, simulating the pace and accountability structure of a real agency-to-client deliverable engagement.</li>
+                  <li>Presented findings to stakeholder panels — practising high-stakes executive communication under corporate scrutiny conditions.</li>
+                </ul>
+
+                <p class="details-label">Strategic Scope</p>
+                <div class="metrics-grid">
+                  <div class="metric-pill">Board-level <span>presentation delivery</span></div>
+                  <div class="metric-pill">8-week <span>structured mandate</span></div>
+                  <div class="metric-pill">Bosch AG <span>corporate client</span></div>
+                </div>
+
+                <p class="details-label">Project Type</p>
+                <div class="chip-row">
+                  <span class="chip accent">GTM Strategy</span>
+                  <span class="chip amber">Logistics Architecture</span>
+                  <span class="chip rose">Executive Communication</span>
+                </div>
+
+                <p class="details-label">Artifacts &amp; Outputs</p>
+                <div class="artifact-links">
+                  <a href="#" class="artifact-link">📊 Executive Pitch Deck</a>
+                  <a href="#" class="artifact-link">🗺 GTM Logistics Blueprint</a>
+                  <a href="#" class="artifact-link">📐 Resource Allocation Model</a>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <!-- ── CARD 6: CBS MA — Live Project ─────────────────── -->
+          <article class="exp-card fade-in">
+            <div class="card-body">
+              <p class="card-company">CBS International Business School</p>
+              <h3 class="card-role">MA — Marketing &amp; Digital Business</h3>
+              <div class="chip-row">
+                <span class="chip accent">📅 2025 – Jan 2027</span>
+                <span class="chip violet">✦ In Progress</span>
+                <span class="chip sky">Cologne, Germany</span>
+              </div>
+              <div class="chip-row">
+                <span class="chip">Business Analytics</span>
+                <span class="chip">Digital Strategy</span>
+                <span class="chip">Lean Methodologies</span>
+              </div>
+              <p class="card-summary">
+                Pursuing an MA in International Business with a Marketing &amp; Digital Business specialisation at CBS Cologne — applying academic frameworks directly to real-world engagements through embedded Venture Lab and corporate case projects.
+              </p>
+            </div>
+            <details class="card-details">
+              <summary>
+                Deep Dive
+                <svg class="details-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="details-body">
+                <p class="details-label">Programme Context</p>
+                <ul class="details-bullets">
+                  <li>Enrolled in a practice-first MA programme designed to embed live corporate and startup projects alongside academic modules — all real-world deliverables, not simulations.</li>
+                  <li>Advanced Modules: Business Analytics, Digital Strategy, Lean Methodologies &amp; Process Improvement, Digital Business Models, Cross-Cultural Management.</li>
+                  <li>Engagement in Venture Lab projects (Einhundert CleanTech) and Corporate Mandates (Bosch) as credited programme components.</li>
+                </ul>
+
+                <p class="details-label">Applied Projects Within Programme</p>
+                <div class="chip-row">
+                  <span class="chip accent">Einhundert CleanTech (Venture Lab)</span>
+                  <span class="chip amber">Bosch Case Competition</span>
+                  <span class="chip rose">TEDxCBS PM Lead</span>
+                </div>
+
+                <p class="details-label">Artifacts &amp; Outputs</p>
+                <div class="artifact-links">
+                  <a href="#" class="artifact-link">🎓 CBS Programme Page</a>
+                  <a href="#" class="artifact-link">📋 Module Overview</a>
+                </div>
+              </div>
+            </details>
+          </article>
+
+        </div><!-- /.portfolio-grid -->
+      </div>
+    </section>
+
+    <hr class="section-divider container" />
+
+    <!-- ============================================================
+         SKILLS SECTION — each skill traced to origin + evidence
+         ============================================================ -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">// Skills &amp; Where They Come From</p>
+          <h2 class="section-title">Competencies, Traced</h2>
+          <p class="section-subtitle">Every skill below is tied to the real experience that built it — not a list, but a record of proof.</p>
+        </div>
+
+        <!-- ── CLUSTER 1: PROJECT MANAGEMENT ── -->
+        <div class="skill-cluster fade-in">
+          <div class="skill-cluster-header">
+            <span class="skill-cluster-icon">🗂</span>
+            <h3 class="skill-cluster-title">Project Management</h3>
+          </div>
+
+          <div class="skill-rows">
+
+            <div class="skill-row">
+              <div class="skill-row-left">
+                <p class="skill-name">Cross-Functional Deliverable Tracking</p>
+                <p class="skill-origin">Built at <strong>TEDxCBS</strong> · Reinforced at <strong>Image Studio</strong></p>
+              </div>
+              <div class="skill-row-right">
+                <p class="skill-evidence">Owned the full deliverable lifecycle across 5+ departments at TEDxCBS — building live tracking dashboards that flagged slippage before it reached leadership. At Image Studio, maintained unified spreadsheets managing media assets, processing schedules, and seasonal peak workloads over three years.</p>
+                <div class="chip-row" style="margin-top: var(--space-3); margin-bottom: 0;">
+                  <span class="chip accent">Trello</span>
+                  <span class="chip">Google Sheets</span>
+                  <span class="chip">ClickUp</span>
+                  <span class="chip green">Proven over 3 years</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-row-left">
+                <p class="skill-name">Stakeholder Reporting &amp; Status Communication</p>
+                <p class="skill-origin">Built at <strong>TEDxCBS</strong> · Applied at <strong>Bosch</strong></p>
+              </div>
+              <div class="skill-row-right">
+                <p class="skill-evidence">Authored concise weekly update reports for the TEDxCBS Executive Committee, translating operational complexity into clear priority vectors and blocker flags. At Bosch, structured executive-level pitch decks presenting GTM data to board-level stakeholders — practised communicating under real corporate scrutiny.</p>
+                <div class="chip-row" style="margin-top: var(--space-3); margin-bottom: 0;">
+                  <span class="chip accent">Executive Decks</span>
+                  <span class="chip">Weekly Status Reports</span>
+                  <span class="chip sky">Board-level Delivery</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-row-left">
+                <p class="skill-name">Quality Assurance &amp; Process Documentation</p>
+                <p class="skill-origin">Built at <strong>Image Studio</strong> · Deepened at <strong>Einhundert CleanTech</strong></p>
+              </div>
+              <div class="skill-row-right">
+                <p class="skill-evidence">At Image Studio, designed the full operational SOP for a studio transitioning to digital — creating process documentation that survived staff turnover and seasonal peaks. At Einhundert, restructured internal workflow frameworks to reduce delivery friction and increase team output bandwidth.</p>
+                <div class="chip-row" style="margin-top: var(--space-3); margin-bottom: 0;">
+                  <span class="chip accent">SOP Design</span>
+                  <span class="chip">Workflow Frameworks</span>
+                  <span class="chip amber">Process Improvement</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── CLUSTER 2: METHODOLOGIES ── -->
+        <div class="skill-cluster fade-in">
+          <div class="skill-cluster-header">
+            <span class="skill-cluster-icon">⚙️</span>
+            <h3 class="skill-cluster-title">Methodologies</h3>
+          </div>
+
+          <div class="skill-rows">
+
+            <div class="skill-row">
+              <div class="skill-row-left">
+                <p class="skill-name">Lean Methodologies &amp; Process Improvement</p>
+                <p class="skill-origin">Studied at <strong>CBS MA</strong> · Applied at <strong>Image Studio</strong> &amp; <strong>Einhundert</strong></p>
+              </div>
+              <div class="skill-row-right">
+                <p class="skill-evidence">Lean process design is a formal CBS MA module — but the real application came earlier. At Image Studio, audited legacy scheduling workflows and eliminated scheduling conflicts by replacing manual systems with a streamlined digital booking model, cutting delivery turnaround by 30%. At Einhundert, applied the same approach to internal team documentation to expand delivery bandwidth.</p>
+                <div class="chip-row" style="margin-top: var(--space-3); margin-bottom: 0;">
+                  <span class="chip green">30% faster delivery</span>
+                  <span class="chip accent">Waste Elimination</span>
+                  <span class="chip">Workflow Redesign</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-row-left">
+                <p class="skill-name">Agile Frameworks</p>
+                <p class="skill-origin">Studied at <strong>CBS MA</strong> · Practiced at <strong>TEDxCBS</strong></p>
+              </div>
+              <div class="skill-row-right">
+                <p class="skill-evidence">Agile sprint logic (short cycles, daily accountability, retrospective adjustment) underpinned the TEDxCBS delivery cadence — running iterative weekly check-ins across 5+ departments with a rolling backlog of deliverables. CBS MA provides formal Agile framework coursework as an academic layer on top of this operational experience.</p>
+                <div class="chip-row" style="margin-top: var(--space-3); margin-bottom: 0;">
+                  <span class="chip accent">Sprint Planning</span>
+                  <span class="chip">Iterative Delivery</span>
+                  <span class="chip sky">Backlog Management</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-row-left">
+                <p class="skill-name">Go-To-Market Strategy &amp; Funnel Architecture</p>
+                <p class="skill-origin">Delivered at <strong>Bosch</strong> · Applied at <strong>Einhundert CleanTech</strong></p>
+              </div>
+              <div class="skill-row-right">
+                <p class="skill-evidence">At Bosch, designed an end-to-end GTM logistics architecture under a live corporate mandate — aligning resource allocation with market-entry objectives and presenting at board level. At Einhundert, co-engineered a B2C customer acquisition playbook covering the full funnel from awareness through conversion, with defined channel strategy and campaign timeline tracking.</p>
+                <div class="chip-row" style="margin-top: var(--space-3); margin-bottom: 0;">
+                  <span class="chip accent">GTM Architecture</span>
+                  <span class="chip amber">B2C Funnel Design</span>
+                  <span class="chip violet">Conversion Tracking</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── CLUSTER 3: TOOLS ── -->
+        <div class="skill-cluster fade-in">
+          <div class="skill-cluster-header">
+            <span class="skill-cluster-icon">🛠</span>
+            <h3 class="skill-cluster-title">Tools &amp; Platforms</h3>
+          </div>
+
+          <div class="skill-rows">
+
+            <div class="skill-row">
+              <div class="skill-row-left">
+                <p class="skill-name">Figma — Workflow Design &amp; UI Prototyping</p>
+                <p class="skill-origin">Applied at <strong>Image Studio</strong> · Extended in personal design projects</p>
+              </div>
+              <div class="skill-row-right">
+                <p class="skill-evidence">Used Figma professionally at Image Studio to create structured visual mockups and interactive workflow documentation — mapping bottlenecks and guiding software integration decisions for studio stakeholders. Extended this into UI/UX territory through personal projects: a full design system for a premium mobile coffee app (Flamos), a wedding photography brand site, and a government document processing UI — each with component libraries, responsive breakpoints, and production-ready outputs.</p>
+                <div class="chip-row" style="margin-top: var(--space-3); margin-bottom: 0;">
+                  <span class="chip accent">Wireframes</span>
+                  <span class="chip">Component Libraries</span>
+                  <span class="chip sky">UI/UX Prototyping</span>
+                  <span class="chip violet">Workflow Diagrams</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-row-left">
+                <p class="skill-name">Project Boards — Trello, Asana, ClickUp, Monday</p>
+                <p class="skill-origin">Applied at <strong>TEDxCBS</strong> · Used across all remote engagements</p>
+              </div>
+              <div class="skill-row-right">
+                <p class="skill-evidence">Project board hygiene (maintaining clean status columns, due dates, owner assignments, and blockers) was the operational backbone of TEDxCBS delivery coordination. Applied the same rigour across Image Studio's digital migration and Einhundert's campaign tracking. Comfortable context-switching between tools depending on client environment — Trello for visual kanban, Asana for dependency mapping, ClickUp for multi-view reporting.</p>
+                <div class="chip-row" style="margin-top: var(--space-3); margin-bottom: 0;">
+                  <span class="chip accent">Trello</span>
+                  <span class="chip">Asana</span>
+                  <span class="chip">ClickUp</span>
+                  <span class="chip">Monday.com</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-row-left">
+                <p class="skill-name">Google Workspace &amp; Slack — Remote Ops Stack</p>
+                <p class="skill-origin">Core stack across <strong>all roles</strong></p>
+              </div>
+              <div class="skill-row-right">
+                <p class="skill-evidence">Google Workspace (Docs, Sheets, Drive, Slides) was the primary documentation and handoff layer at Image Studio and TEDxCBS — used for asset tracking, SOP drafting, status reports, and stakeholder presentations. Slack was the communication backbone for async coordination across multilingual teams at TEDxCBS and remote engagements. Proficient in structured channel management, pinning protocols, and escalation routing.</p>
+                <div class="chip-row" style="margin-top: var(--space-3); margin-bottom: 0;">
+                  <span class="chip accent">Google Sheets</span>
+                  <span class="chip">Docs &amp; Drive</span>
+                  <span class="chip sky">Slack</span>
+                  <span class="chip">MS Office</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── CLUSTER 4: REMOTE & INTERNATIONAL OPS ── -->
+        <div class="skill-cluster fade-in">
+          <div class="skill-cluster-header">
+            <span class="skill-cluster-icon">🌍</span>
+            <h3 class="skill-cluster-title">Remote &amp; International Operations</h3>
+          </div>
+
+          <div class="skill-rows">
+
+            <div class="skill-row">
+              <div class="skill-row-left">
+                <p class="skill-name">EU/EMEA Remote Delivery Experience</p>
+                <p class="skill-origin">Lived in <strong>Cologne, Germany</strong> · Working with European stakeholders since 2024</p>
+              </div>
+              <div class="skill-row-right">
+                <p class="skill-evidence">Based in Cologne since 2024, directly embedded in German-language professional environments at Hollister/A&amp;F and CBS. All project work — TEDxCBS, Bosch, Einhundert — operated within European corporate and institutional frameworks, requiring alignment with EU communication norms, reporting expectations, and delivery standards. Not simulated EMEA exposure — lived and worked it.</p>
+                <div class="chip-row" style="margin-top: var(--space-3); margin-bottom: 0;">
+                  <span class="chip sky">Germany-based</span>
+                  <span class="chip accent">EU Work Standards</span>
+                  <span class="chip green">On-ground EMEA exp.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-row-left">
+                <p class="skill-name">Multilingual Team Coordination</p>
+                <p class="skill-origin">Applied at <strong>Hollister / A&amp;F</strong> · TEDxCBS international committee</p>
+              </div>
+              <div class="skill-row-right">
+                <p class="skill-evidence">At Hollister Cologne, coordinated daily operations across German-English multilingual store floor teams — enforcing brand standards and maintaining operational KPIs in a high-pressure retail environment where communication gaps directly impacted performance. At TEDxCBS, the executive committee and volunteer pool spanned multiple nationalities, requiring written and verbal communication calibrated for diverse cultural contexts.</p>
+                <div class="chip-row" style="margin-top: var(--space-3); margin-bottom: 0;">
+                  <span class="chip accent">English — Fluent</span>
+                  <span class="chip amber">German — B1</span>
+                  <span class="chip">Cross-cultural Comms</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="section-divider container" />
+
+    <!-- ============================================================
+         EDUCATION SECTION — modules tied to real-world application
+         ============================================================ -->
+    <section class="section" id="education">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">// Academic Foundation</p>
+          <h2 class="section-title">Education</h2>
+          <p class="section-subtitle">Formal qualifications — and what each one actually unlocked in practice.</p>
+        </div>
+
+        <!-- CBS MA -->
+        <div class="edu-deep-card fade-in">
+          <div class="edu-deep-header">
+            <div>
+              <div class="chip-row">
+                <span class="chip violet">✦ In Progress</span>
+                <span class="chip accent">Expected Jan 2027</span>
+                <span class="chip sky">Cologne, Germany</span>
+              </div>
+              <p class="edu-degree">Master of Arts — International Business</p>
+              <p class="edu-school">Cologne Business School (CBS) · Specialisation: Marketing &amp; Digital Business</p>
+            </div>
+          </div>
+          <p class="edu-narrative">
+            CBS is a practice-first programme — academic modules run in parallel with live corporate mandates and startup venture engagements, not after them. Every course directly fed a real deliverable. The MA's EMEA positioning and German-language environment was also the strategic reason for choosing Cologne: to build authentic European professional credibility, not just an international credential.
+          </p>
+          <div class="edu-modules-grid">
+            <div class="edu-module-item">
+              <p class="edu-module-name">Business Analytics</p>
+              <p class="edu-module-use">Applied to conversion metric tracking at Einhundert CleanTech — structuring campaign data into actionable funnel diagnostics.</p>
+            </div>
+            <div class="edu-module-item">
+              <p class="edu-module-name">Digital Strategy</p>
+              <p class="edu-module-use">Underpins the digital transformation blueprint delivered at Image Studio and the GTM architecture built for the Bosch mandate.</p>
+            </div>
+            <div class="edu-module-item">
+              <p class="edu-module-name">Lean Methodologies &amp; Process Improvement</p>
+              <p class="edu-module-use">Formalises the process audit and workflow redesign approach used at Image Studio (30% faster delivery) and Einhundert (team bandwidth expansion).</p>
+            </div>
+            <div class="edu-module-item">
+              <p class="edu-module-name">Cross-Cultural Management</p>
+              <p class="edu-module-use">Directly applied in multilingual team coordination at Hollister Cologne and across the international TEDxCBS executive committee.</p>
+            </div>
+            <div class="edu-module-item">
+              <p class="edu-module-name">Digital Business Models</p>
+              <p class="edu-module-use">Informs the B2C playbook architecture at Einhundert and the customer acquisition funnel design work — connecting business model logic to channel strategy.</p>
+            </div>
+            <div class="edu-module-item">
+              <p class="edu-module-name">Marketing &amp; Growth</p>
+              <p class="edu-module-use">Provides the academic framework behind the Einhundert CleanTech funnel work and Bosch GTM strategy — marketing theory grounded in real mandates.</p>
+            </div>
+          </div>
+          <div class="edu-live-projects">
+            <p class="details-label" style="margin-top: 0;">Live Projects Credited Within This Programme</p>
+            <div class="chip-row" style="margin-bottom: 0;">
+              <span class="chip rose">TEDxCBS — PM Lead</span>
+              <span class="chip amber">Bosch — Corporate Mandate</span>
+              <span class="chip green">Einhundert — Venture Lab</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BBA -->
+        <div class="edu-deep-card fade-in" style="margin-top: var(--space-5);">
+          <div class="edu-deep-header">
+            <div>
+              <div class="chip-row">
+                <span class="chip green">✦ Completed</span>
+                <span class="chip accent">Graduated 2023</span>
+                <span class="chip sky">Kolkata, India</span>
+              </div>
+              <p class="edu-degree">Bachelor of Business Administration (BBA)</p>
+              <p class="edu-school">University of Engineering and Management · Kolkata, India</p>
+            </div>
+          </div>
+          <p class="edu-narrative">
+            The BBA established the operational and management thinking that shaped three years of practice at Image Studio immediately after graduation. The degree provided the foundational vocabulary for cross-functional business operations, stakeholder management, and process thinking — which was then tested in the real world from day one.
+          </p>
+          <div class="edu-modules-grid">
+            <div class="edu-module-item">
+              <p class="edu-module-name">Business Operations &amp; Management</p>
+              <p class="edu-module-use">Translated directly into the operational blueprint work at Image Studio — structuring workflows, managing delivery timelines, and eliminating process waste from a non-digital business model.</p>
+            </div>
+            <div class="edu-module-item">
+              <p class="edu-module-name">Organisational Strategy</p>
+              <p class="edu-module-use">Provided the strategic lens behind the studio's digital transformation — from identifying legacy inefficiencies through to designing a scalable digital operating model.</p>
+            </div>
+            <div class="edu-module-item">
+              <p class="edu-module-name">NSE Financial Markets Certification</p>
+              <p class="edu-module-use">National Stock Exchange of India certification in financial markets — demonstrates analytical rigour and quantitative awareness beyond standard business operations scope.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="section-divider container" />
+
+    <!-- ============================================================
+         CONTACT SECTION — real, actionable, no filler
+         ============================================================ -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">// Get In Touch</p>
+          <h2 class="section-title">Let's Work Together</h2>
+          <p class="section-subtitle">Open to remote agency roles, project management contracts, and operations mandates across EU/EMEA. Currently based in Cologne, Germany.</p>
+        </div>
+
+        <div class="contact-grid">
+
+          <div class="contact-info-block fade-in">
+            <div class="contact-availability">
+              <div class="availability-badge" style="margin-bottom: var(--space-6);">
+                Open to Remote Agency Roles — EU/EMEA Focus
+              </div>
+            </div>
+
+            <p class="contact-blurb">
+              I'm actively looking for remote Project Management, Operations, and Growth Strategy roles where I can own delivery pipelines, manage cross-functional teams, and serve as the reliable operational layer between European clients and execution teams.
+            </p>
+            <p class="contact-blurb" style="margin-top: var(--space-4);">
+              Based in Cologne. Available for calls in CET. Fluent English, working German (B1). Familiar with EU stakeholder norms, corporate reporting standards, and EMEA delivery cadences — from direct experience, not theory.
+            </p>
+
+            <div class="contact-details-list">
+              <div class="contact-detail-row">
+                <span class="contact-detail-label">Email</span>
+                <a href="mailto:soumikbhowmick01@gmail.com" class="contact-detail-value">soumikbhowmick01@gmail.com</a>
+              </div>
+              <div class="contact-detail-row">
+                <span class="contact-detail-label">Phone</span>
+                <a href="tel:+919383006601" class="contact-detail-value">+91 93830 06601</a>
+              </div>
+              <div class="contact-detail-row">
+                <span class="contact-detail-label">LinkedIn</span>
+                <a href="https://linkedin.com/in/soumik-bhowmick-8ab631272" target="_blank" rel="noopener" class="contact-detail-value">linkedin.com/in/soumik-bhowmick-8ab631272</a>
+              </div>
+              <div class="contact-detail-row">
+                <span class="contact-detail-label">Location</span>
+                <span class="contact-detail-value" style="color: var(--color-text-secondary);">Cologne, Germany (CET)</span>
+              </div>
+              <div class="contact-detail-row">
+                <span class="contact-detail-label">Availability</span>
+                <span class="contact-detail-value" style="color: var(--color-green);">Actively interviewing</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-role-cards fade-in">
+            <p class="contact-roles-label">Roles I'm targeting</p>
+            <div class="contact-role-card">
+              <p class="contact-role-title">Remote Project Manager</p>
+              <p class="contact-role-desc">Cross-functional delivery coordination for EU agency or SaaS clients — owning timelines, dashboards, and stakeholder reporting layers.</p>
+            </div>
+            <div class="contact-role-card">
+              <p class="contact-role-title">Operations &amp; Strategy Coordinator</p>
+              <p class="contact-role-desc">Building and maintaining the operational backbone of remote teams — process documentation, workflow design, and delivery infrastructure.</p>
+            </div>
+            <div class="contact-role-card">
+              <p class="contact-role-title">Growth &amp; GTM Associate</p>
+              <p class="contact-role-desc">Supporting funnel design, campaign tracking, and go-to-market execution for B2B/B2C products at the startup or scale-up stage.</p>
+            </div>
+            <div class="contact-role-card">
+              <p class="contact-role-title">Digital Operations Specialist</p>
+              <p class="contact-role-desc">Managing digital asset pipelines, tool ecosystems, and cross-team coordination for agencies operating across time zones.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-text">Soumik Bhowmick · Remote Project Manager &amp; Operations Specialist · Open to EU/EMEA Agency Roles</p>
+      <div class="footer-contact">
+        <a href="mailto:soumikbhowmick01@gmail.com" class="contact-link">soumikbhowmick01@gmail.com</a>
+        <a href="https://linkedin.com/in/soumik-bhowmick-8ab631272" target="_blank" rel="noopener" class="contact-link">linkedin.com/in/soumik-bhowmick</a>
+      </div>
+      <p class="footer-text" style="margin-top: 0.5rem; font-size: 0.75rem;">Built with semantic HTML5 &amp; CSS · Optimised for GitHub Pages</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCROLL FADE-IN SCRIPT
+       ============================================================ -->
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            // Stagger cards by their index in the grid
+            const siblings = Array.from(entry.target.parentElement.children);
+            const delay = siblings.indexOf(entry.target) * 80;
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, delay);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08 }
+    );
+
+    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+  </script>
+
+</body>
+</html>
